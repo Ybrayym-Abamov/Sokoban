@@ -123,11 +123,22 @@ function moveRight(row, column) {
             playerLeft += 50;
             canMove = true
         }
+    } else if (map[rowLocation][nextColLocation] === "X") {
+
+        if (map[rowLocation][nextnextColLocation] === " ") {
+
+            map[rowLocation][nextnextColLocation] = "B"
+            map[rowLocation][nextColLocation] = "O"
+            colLocation += 1;
+            playerLeft += 50;
+            canMove = true
+        }
     }
     console.log(rowLocation, colLocation)
     console.log(playerTop, playerLeft)
     clearDiv()
     displayMap()
+    winCheck()
 }
 
 
@@ -136,7 +147,8 @@ function moveLeft(row, column) {
     let nextColLocation = column - 1
     let nextnextColLocation = nextColLocation - 1
     let canMove = false
-
+    console.log(map[rowLocation][nextColLocation])
+    console.log(map[rowLocation][nextnextColLocation])
     if (map[rowLocation][nextColLocation] === " " || map[rowLocation][nextColLocation] === "O" || map[rowLocation][nextColLocation] === "S") {
 
         colLocation -= 1;
@@ -145,7 +157,7 @@ function moveLeft(row, column) {
 
     } else if (map[rowLocation][nextColLocation] === "B") {
 
-        if (map[rowLocation][nextnextColLocation] === " ") {
+        if (map[rowLocation][nextnextColLocation] === " " || map[rowLocation][nextnextColLocation] === "S") {
             map[rowLocation][nextnextColLocation] = "B"
             map[rowLocation][nextColLocation] = " "
 
@@ -155,7 +167,17 @@ function moveLeft(row, column) {
         } else if (map[rowLocation][nextnextColLocation] === "O") {
 
             map[rowLocation][nextnextColLocation] = "X"
-            map[rowLocation][nextcolLocation] = " "
+            map[rowLocation][nextColLocation] = " "
+            colLocation -= 1;
+            playerLeft -= 50;
+            canMove = true
+        }
+    } else if (map[rowLocation][nextColLocation] === "X") {
+
+        if (map[rowLocation][nextnextColLocation] === " ") {
+
+            map[rowLocation][nextnextColLocation] = "B"
+            map[rowLocation][nextColLocation] = "O"
             colLocation -= 1;
             playerLeft -= 50;
             canMove = true
@@ -163,8 +185,11 @@ function moveLeft(row, column) {
     }
     console.log(rowLocation, colLocation)
     console.log(playerTop, playerLeft)
+    console.log(map[rowLocation][nextColLocation])
+    console.log()
     clearDiv()
     displayMap()
+    winCheck()
 }
 
 
@@ -174,25 +199,35 @@ function moveUp(row, column) {
     let nextnextRowLocation = nextRowLocation - 1
     let canMove = false
 
-    if (map[rowLocation][nextRowLocation] === " " || map[rowLocation][nextRowLocation] === "O" || map[rowLocation][nextRowLocation] === "S") {
+    if (map[nextRowLocation][colLocation] === " " || map[nextRowLocation][colLocation] === "O" || map[nextRowLocation][colLocation] === "S") {
 
         rowLocation -= 1;
         playerTop -= 50;
         canMove = true
 
-    } else if (map[rowLocation][nextRowLocation] === "B") {
+    } else if (map[nextRowLocation][colLocation] === "B") {
 
-        if (map[rowLocation][nextnextRowLocation] === " ") {
-            map[rowLocation][nextnextRowLocation] = "B"
-            map[rowLocation][nextRowLocation] = " "
+        if (map[nextnextRowLocation][colLocation] === " ") {
+            map[nextnextRowLocation][colLocation] = "B"
+            map[nextRowLocation][colLocation] = " "
 
             rowLocation -= 1;
             playerTop -= 50;
             canMove = true;
-        } else if (map[rowLocation][nextnextRowLocation] === "O") {
+        } else if (map[nextnextRowLocation][colLocation] === "O") {
 
-            map[rowLocation][nextnextRowLocation] = "X"
-            map[rowLocation][nextRowLocation] = " "
+            map[nextnextRowLocation][colLocation] = "X"
+            map[nextRowLocation][colLocation] = " "
+            rowLocation -= 1;
+            playerTop -= 50;
+            canMove = true
+        }
+    } else if (map[nextRowLocation][colLocation] === "X") {
+
+        if (map[nextnextRowLocation][colLocation] === " ") {
+
+            map[nextnextRowLocation][colLocation] = "B"
+            map[nextRowLocation][colLocation] = "O"
             rowLocation -= 1;
             playerTop -= 50;
             canMove = true
@@ -202,6 +237,7 @@ function moveUp(row, column) {
     console.log(playerTop, playerLeft)
     clearDiv()
     displayMap()
+    winCheck()
 }
 
 
@@ -211,31 +247,35 @@ function moveDown(row, column) {
     let nextnextRowLocation = nextRowLocation + 1
     let canMove = false
 
-    if (map[rowLocation][nextRowLocation] === "W") {
-        rowLocation += 1;
-        playerTop += 50;
-        canMove = false
-        return
-    }
-    if (map[rowLocation][nextRowLocation] === " " || map[rowLocation][nextRowLocation] === "O" || map[rowLocation][nextRowLocation] === "S") {
+    if (map[nextRowLocation][colLocation] === " " || map[nextRowLocation][colLocation] === "O" || map[nextRowLocation][colLocation] === "S") {
 
         rowLocation += 1;
         playerTop += 50;
         canMove = true
 
-    } else if (map[rowLocation][nextRowLocation] === "B") {
+    } else if (map[nextRowLocation][colLocation] === "B") {
 
-        if (map[rowLocation][nextnextRowLocation] === " ") {
-            map[rowLocation][nextnextRowLocation] = "B"
-            map[rowLocation][nextRowLocation] = " "
+        if (map[nextnextRowLocation][colLocation] === " ") {
+            map[nextnextRowLocation][colLocation] = "B"
+            map[nextRowLocation][colLocation] = " "
 
             rowLocation += 1;
             playerTop += 50;
             canMove = true;
-        } else if (map[rowLocation][nextnextRowLocation] === "O") {
+        } else if (map[nextnextRowLocation][colLocation] === "O") {
 
-            map[rowLocation][nextnextRowLocation] = "X"
-            map[rowLocation][nextRowLocation] = " "
+            map[nextnextRowLocation][colLocation] = "X"
+            map[nextRowLocation][colLocation] = " "
+            rowLocation += 1;
+            playerTop += 50;
+            canMove = true
+        }
+    } else if (map[nextRowLocation][colLocation] === "X") {
+
+        if (map[nextnextRowLocation][colLocation] === " ") {
+
+            map[nextnextRowLocation][colLocation] = "B"
+            map[nextRowLocation][colLocation] = "O"
             rowLocation += 1;
             playerTop += 50;
             canMove = true
@@ -245,7 +285,29 @@ function moveDown(row, column) {
     console.log(playerTop, playerLeft)
     clearDiv()
     displayMap()
+    winCheck()
 }
+
+
+
+
+function winCheck() {
+    let total = 0
+    for (let row = 0; row < map.length; row++) {
+        for (let column = 0; column < map[row].length; column++) {
+            if (map[row][column] === "X") {
+                total = total + 1
+            }
+        }
+    }
+    if (total === 7) {
+        document.getElementById("winCheck").innerHTML = "Congratulations"
+        document.removeEventListener("keydown", mover);
+    }
+}
+
+
+
 
 
 
