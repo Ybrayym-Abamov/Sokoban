@@ -1,0 +1,125 @@
+@font-face {
+    font-family: "marioFont";
+    src: url(Font/Pipe_Dream_by_TRIFORCE89.ttf)
+}
+
+
+body {
+    background-color: sandybrown;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    top: 50%;
+    transform: translateY(15%);
+}
+
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+
+h1 {
+    font-family: marioFont;
+    font-size: 35px;
+    padding: 10px 10px 10px 10px;
+}
+
+
+.Paths {
+    width: 50px;
+    height:50px;
+    background-color: sandybrown;
+    display:inline-block;
+}
+
+
+.Ws {
+    width: 50px;
+    height: 50px;
+    background-image: url('images/brick.jpg');
+    background-size: contain;
+    display:inline-block;
+}
+
+    
+.sPoint {
+    width: 50px;
+    height:50px;
+    background-color: sandybrown;
+}
+
+
+.oLocation {
+    width: 50px;
+    height:50px;
+    /* background-color: black;
+    border-radius: 50%; */
+    display: flex; 
+    align-self: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* border: 20px solid sandybrown; */
+    /* z-index: 1; */
+}
+
+
+.b1Location {
+    height: 10px;
+    width: 10px;
+    background-color: black;
+    border-radius: 50%;
+    display: flex; 
+    align-self: center;
+    justify-content: center;
+    z-index: -1;
+    flex-wrap: wrap;
+    position: absolute;
+}
+
+.bLocation {
+    width: 50px;
+    height: 50px;
+    background-image: url(images/crate.png);
+    display:inline-block;
+}
+
+
+.boxThere {
+    width: 50px;
+    height: 50px;
+    background-image: url(images/crate1.png);
+    display:inline-block;
+}
+
+.transparent {
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    display:inline-block;
+}
+#sokoban{
+    display:flex;
+    flex-wrap: wrap;
+    width: 400px;
+}
+
+#player {
+    background-image: url(images/goku.png);
+    display: block;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 50px;
+    width: 50px;
+    position: relative;
+}
+
+
+#Restart {
+    background-image: url(images/brick1.png);
+    color: white;
+    padding: 10px 10px 10px 10px;
+    margin: 5px;
+}
